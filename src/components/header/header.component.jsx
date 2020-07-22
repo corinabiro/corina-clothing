@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo} from '../../assets/crown.svg';
 
+
 import './header.styles.scss';
+import FormInput from '../form-input/form-input.component';
 
 const Header = ({ currentUser }) => (
     <div className="header">
@@ -24,4 +27,10 @@ const Header = ({ currentUser }) => (
     </div>
 );
 
-export default Header;
+//can be any name
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
+});
+
+//connect is HOC
+export default connect(mapStateToProps)(Header);
