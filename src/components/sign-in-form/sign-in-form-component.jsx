@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -25,7 +26,6 @@ const SignInForm = () => {
   const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
     createUserDocumentFromAuth(user);
-    console.log(user);
   };
 
   const handleChange = (event) => {
@@ -37,13 +37,11 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
     } catch (error) {
-      console.log(error);
       switch (error.code) {
         case "auth/wrong-password":
           alert("Wrong password");

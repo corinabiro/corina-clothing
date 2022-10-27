@@ -42,7 +42,6 @@ const SignUpForm = () => {
         email,
         password
       );
-      console.log(user);
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
@@ -90,7 +89,6 @@ const SignUpForm = () => {
           name="confirmedPassword"
           value={confirmedPassword}
         />
-        {/* <button type="submit">Sign Up</button> */}
         <Button type="submit">Sign Up</Button>
       </form>
     </div>
