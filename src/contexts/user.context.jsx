@@ -7,7 +7,7 @@ import {
 } from "../utils/firebase/firebase.utils";
 
 export const UserContext = createContext({
-  cuerrentuser: null,
+  currentUser: null,
   setCurrentUser: () => null,
 });
 

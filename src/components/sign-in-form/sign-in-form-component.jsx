@@ -24,8 +24,7 @@ const SignInForm = () => {
     setFormFiels(defaultFormField);
   };
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const handleChange = (event) => {
