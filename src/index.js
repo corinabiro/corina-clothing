@@ -8,8 +8,6 @@ import { CategoriesProvider } from "./contexts/categories.context";
 import { CartProvider } from "./contexts/cart.context";
 import reportWebVitals from "./reportWebVitals";
 
-import { Body } from "./index.jsx";
-
 const container = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
@@ -17,9 +15,7 @@ root.render(
     <UserProvider>
       <CategoriesProvider>
         <CartProvider>
-          <Body>
-            <App tab="home" />
-          </Body>
+          <App tab="home" />
         </CartProvider>
       </CategoriesProvider>
     </UserProvider>
