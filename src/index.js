@@ -6,8 +6,6 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 
 import App from "./App";
-//import { CategoriesProvider } from "./contexts/categories.context";
-import { CartProvider } from "./contexts/cart.context";
 import reportWebVitals from "./reportWebVitals";
 
 const container = document.getElementById("root");
@@ -15,9 +13,7 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <CartProvider>
-        <App tab="home" />
-      </CartProvider>
+      <App tab="home" />
     </BrowserRouter>
   </Provider>
 );
