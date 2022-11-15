@@ -48,7 +48,7 @@ const SignUpForm = () => {
       if (error.code === "auth/email-already-in-use") {
         alert("Email already in use");
       }
-      console.log("usser creatin enacounted an error: ", error);
+      console.log("user creatin enacounted an error: ", error);
     }
   };
 
