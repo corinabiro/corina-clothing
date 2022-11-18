@@ -7,7 +7,6 @@ import Spinner from "../../components/spinner/spinner.component";
 import { CategoryContainer, CategoryTitle } from "./category.styles";
 import { useSelector } from "react-redux";
 import { selectCategoriesMap } from "../../store/categories/category.selector";
-
 import { selectCategoriesIsLoading } from "../../store/categories/category.selector";
 
 const Category = () => {
