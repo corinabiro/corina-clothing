@@ -1,12 +1,12 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
-import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// import thunk from "redux-thunk";
 import createSagaMiddelware from "redux-saga";
+// import thunk from "redux-thunk";
 import { rootSaga } from "./root-saga";
-
 import { rootReducer } from "./root-reducer";
+
+import { persistStore, persistReducer } from "redux-persist";
 
 const sagaMiddelware = createSagaMiddelware();
 
