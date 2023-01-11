@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItemToCart,
@@ -22,7 +22,7 @@ type CheckoutItemProps = {
   checkoutItem: CartItem;
 };
 
-const CheckoutItem: FC<CheckoutItemProps> = ({ checkoutItem }) => {
+const CheckoutItem: FC<CheckoutItemProps> = memo(({ checkoutItem }) => {
   const { name, imageUrl, quantity, price } = checkoutItem;
 
   const dispatch = useDispatch();
@@ -53,6 +53,6 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ checkoutItem }) => {
       <RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
-};
+});
 
 export default CheckoutItem;
