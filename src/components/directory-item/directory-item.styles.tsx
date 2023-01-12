@@ -49,6 +49,17 @@ justify-content: center;
 border: 1px solid black;
 margin: 0 7.5px 15px;
 overflow: hidden;
+@media screen and (max-width: 800px) {
+  height: 200px;
+  &:hover {
+    & ${BackgroundImage} {
+      opacity: unset;
+    }
+     & ${Body} {
+      opacity: unset;
+    }
+  ]
+}
 &:hover {
   cursor: pointer;
   & ${BackgroundImage} {
@@ -65,4 +76,5 @@ overflow: hidden;
   &:last-child {
     margin-left: 7.5px;
   }
+
 `;

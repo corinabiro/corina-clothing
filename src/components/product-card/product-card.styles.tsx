@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductCardContainer = styled.div`
-  width: 100%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -30,6 +30,21 @@ export const ProductCardContainer = styled.div`
     button {
       opacity: 0.85;
       display: flex;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+    &:hover {
+      img {
+        opacity: unset;
+      }
+    }
+    button {
+      opacity: unset;
+      opacity: 0.9;
+      display: block;
+      min-width: unset;
+      padding: 0 10px 0 10px;
     }
   }
 `;
