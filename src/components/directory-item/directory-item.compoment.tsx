@@ -6,8 +6,6 @@ import {
   DirectoryItemContainer,
 } from "./directory-item.styles";
 
-import { Category } from "../../store/categories/category.types";
-
 import { DirectoryCategory } from "../directory/directory.component";
 
 type DirectoryItemProps = {
