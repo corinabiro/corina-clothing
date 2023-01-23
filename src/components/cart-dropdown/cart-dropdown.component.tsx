@@ -1,26 +1,29 @@
 import React, { useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
-import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom"; 
 import { selectCartItems } from "../../store/cart/cart.selector";
 
 import {
   CartDropDownContainer,
   EmptyMessage,
-  CartItems,
+  CartItems, 
+  CheckoutButton,
 } from "./cart-dropdown.styles";
+import { pathPagesType } from "../../routes/pagesData";
 
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
   let navigate = useNavigate();
 
   const routeChange = useCallback(() => {
-    navigate("/checkout");
+    navigate(pathPagesType.CHECKOUT);
   }, []);
 
   return (
+
+
+    
     <CartDropDownContainer>
       <CartItems>
         {cartItems.length ? (
@@ -31,9 +34,10 @@ const CartDropdown = () => {
           <EmptyMessage>Your cart is empty</EmptyMessage>
         )}
       </CartItems>
-      <Button onClick={routeChange}>Go to Checkout</Button>
+      <CheckoutButton variant="contained" disableElevation onClick={routeChange}>Go to Checkout</CheckoutButton >
+      
     </CartDropDownContainer>
   );
 };
-
+ 
 export default CartDropdown;

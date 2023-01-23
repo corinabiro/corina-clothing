@@ -5,6 +5,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/cart/cart.selector";
+import { pathPagesType } from "../../routes/pagesData";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import { BUTTON_TYPE_CLASSES } from "../../components/button/button.component";
@@ -23,7 +24,9 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const GoToPaymentHandler = () => {
-    navigate("/payment");
+    console.log("Go to payment");
+    console.log(pathPagesType.PAYMNET);
+    navigate(pathPagesType.PAYMNET);
   };
 
   return (

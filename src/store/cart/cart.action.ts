@@ -50,6 +50,13 @@ const deleteCartItem = (
   return cartItems.filter((cartItem) => cartItem.id !== productToRemove.id);
 };
 
+const emptyCart = (
+  cartItems: CartItem[],
+): CartItem[] => {
+  cartItems = [];
+  return cartItems;
+};
+
 export type SetIsCartOpen = ActionWithPayload<
   CART_ACTION_TYPES.SET_IS_CART_OPEN,
   boolean
@@ -75,6 +82,11 @@ export const addItemToCart = (
   productToAdd: CategoryItem
 ) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
+  return setCartItems(newCartItems);
+};
+
+export const emptyCartItems = (cartItems: CartItem[]) => {
+  const newCartItems = emptyCart(cartItems);
   return setCartItems(newCartItems);
 };
 

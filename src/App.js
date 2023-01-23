@@ -6,6 +6,7 @@ import { checkUserSession } from "./store/user/user.action";
 
 import { GlobalStyle } from "./global.styles";
 
+ 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,7 +15,7 @@ const App = () => {
 
   return (
     <div>
-      <GlobalStyle />
+       <GlobalStyle />
       <Router></Router>
     </div>
   );

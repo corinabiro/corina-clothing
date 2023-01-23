@@ -23,8 +23,10 @@ import {
   getDocs,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 import { Category } from "../../store/categories/category.types";
+import { Order } from "../../store/orders/orders.types";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -57,6 +59,8 @@ export type ObjectToAdd = {
   title: string;
 };
 
+
+
 export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
   collectionKey: string,
   objectsToAdd: T[]
@@ -68,6 +72,19 @@ export const addCollectionAndDocuments = async <T extends ObjectToAdd>(
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
+
+  await batch.commit();
+};
+
+
+export const addOrdersInDocument = async <T extends Order>(
+  collectionKey: string,
+  objectToAdd: T
+): Promise<void> => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  const docRef = doc(collectionRef, objectToAdd.title.toLowerCase());
+  batch.set(docRef, objectToAdd);
 
   await batch.commit();
 };

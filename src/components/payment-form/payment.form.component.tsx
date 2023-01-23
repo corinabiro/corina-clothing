@@ -1,9 +1,11 @@
 import React, { isValidElement } from "react";
 import { useState, FormEvent } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StripeCardElement } from "@stripe/stripe-js";
+import { v4 as uuid } from 'uuid';
 
-import { selectCartTotal } from "../../store/cart/cart.selector";
+import { orderCheckoutStart, orderCheckoutSuccess } from "../../store/orders/orders.actions";
+import { selectCartItems, selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { BUTTON_TYPE_CLASSES } from "../button/button.component";
@@ -12,6 +14,9 @@ import {
   FormContainer,
   PaymentButton,
 } from "./payment-form.styles";
+import { Navigate, useNavigate } from "react-router-dom";
+import { pathPagesType } from "../../routes/pagesData";
+import { emptyCartItems, setIsCartOpen } from "../../store/cart/cart.action";
 
 const validCardElement = (
   card: StripeCardElement | null
@@ -22,6 +27,19 @@ const PaymentForm = () => {
   const elements = useElements();
   const amount = useSelector(selectCartTotal);
   const currentUser = useSelector(selectCurrentUser);
+  const cartItems = useSelector(selectCartItems);
+
+  const dispatch = useDispatch();
+  const unique_id = uuid();
+  const navigate = useNavigate();
+
+  const order = {
+    title: unique_id.slice(0,15),
+    items: cartItems,
+    amount: amount,
+    user: currentUser, 
+  }
+
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const cardElementOptions = {
     style: {
@@ -45,9 +63,9 @@ const PaymentForm = () => {
     }
     setIsProcessingPayment(true);
     const response = await fetch("/.netlify/functions/create-payment-intent", {
-      method: "post",
+      method: "post", 
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json",  
       },
       body: JSON.stringify({ amount: amount * 100 }),
     }).then((res) => res.json());
@@ -71,7 +89,11 @@ const PaymentForm = () => {
       alert(paymentResolve.error);
     } else {
       if (paymentResolve.paymentIntent.status === "succeeded")
+        dispatch(orderCheckoutStart(order))
         alert("Payment succesfull");
+        dispatch(emptyCartItems(cartItems));
+        dispatch(setIsCartOpen(false));  
+        navigate(pathPagesType.ORDER_SENT);
     }
   };
   return (

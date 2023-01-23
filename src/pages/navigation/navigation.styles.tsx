@@ -6,7 +6,10 @@ height: 70px;
 width: 100%;
 display: flex;
 justify-content: space-between;
-margin - bottom: 25px;
+margin-bottom: 25px;
+background-color: #fafafa;
+border-bottom: 1px solid #ddd;
+padding: 0 20px;
 @media screen and (max-width: 800px) {
   height: 60px;
   padding: 10px;
@@ -18,6 +21,7 @@ export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   padding: 15px 10px;
+
   @media screen and (max-width: 800px) {
     width: 50px;
     padding: 0;
@@ -38,4 +42,7 @@ export const NavLinks = styled.div`
 export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
+    &:hover {
+    text-decoration: underline;
+  }
 `;
