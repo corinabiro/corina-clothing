@@ -39,8 +39,8 @@ const Navigation = () => {
           <NavLink to="shop">Shop </NavLink>
           {currentUser ? (
             <Fragment>
-              <NavLink to="order-history">
-                Order History
+              <NavLink to="orderHistory">
+                Order History 
               </NavLink>
               <NavLink as="span" onClick={onSignOutUser}>
                 Sign out

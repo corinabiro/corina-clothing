@@ -5,10 +5,7 @@ import {
   ActionWithPayload,
 } from "../../utils/reducer/reducer.utils";
 import { USER_ACTION_TYPES } from "./user.types";
-import {
-  UserData,
-  AdditionalInformation,
-} from "../../utils/firebase/firebase.utils";
+import { AdditionalInformation, UserData } from "./user.types";
 import { User } from "firebase/auth/dist/auth";
 
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;

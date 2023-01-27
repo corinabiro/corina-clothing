@@ -7,7 +7,7 @@ import {
   signUpFailure,
   signOutFailure,
 } from "../user/user.action";
-import { UserData } from "../../utils/firebase/firebase.utils";
+import { UserData } from "./user.types";
 
 export type UserState = {
   readonly currentUser: UserData | null;

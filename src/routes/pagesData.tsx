@@ -9,16 +9,18 @@ const Shop = lazy(() => import("../pages/shop/shop.component"));
 const Checkout = lazy(() => import("../pages/checkout/checkout.component"));
 const Payment = lazy(() => import("../pages/payment/payment.component"));
 const OrderHistory = lazy(() => import("../pages/order-history/order-history.component"));
+const OrderHistoryDetails = lazy(() => import("../pages/order-history-details/order-history-details.component"));
 const OrderSent = lazy(() => import("../pages/order-sent/order-sent.component")); 
 
 export const pathPagesType = { 
   HOME: "",
   AUTHENTICATION: "/auth",
-  SHOP: "/shop/*",    
+  SHOP: "/shop/*",     
   CHECKOUT: "/checkout",
-  PAYMNET: "/payment",
-  ORDER_HISTORY:  "/orderHistory",
-  ORDER_SENT: "/orderSent",
+  PAYMNET: "/payment", 
+  ORDER_HISTORY: "/orderHistory", 
+  ORDER_HISTORY_DEATILS:  "/orderHistoryDetails/", 
+  ORDER_SENT: "/orderSent", 
 }
 
 const pagesData: routerType[] = [
@@ -56,6 +58,12 @@ const pagesData: routerType[] = [
     path: pathPagesType.ORDER_HISTORY,
     element: <OrderHistory />,
     title: "Order History",
+    index: false,
+  },
+  {     
+    path: pathPagesType.ORDER_HISTORY_DEATILS + ":id",
+    element: <OrderHistoryDetails />,
+    title: "Order History DEATILS",
     index: false,
   },
   {     

@@ -12,3 +12,13 @@ export enum USER_ACTION_TYPES {
   SIGN_OUT_SUCCESS = "user/SIGN_OUT_SUCCESS",
   SIGN_OUT_FAILURE = "user/SIGN_OUT_FAILURE",
 }
+
+export type AdditionalInformation = {
+  displayName?: string;
+};
+
+export type UserData = {
+  createdAt: Date;
+  displayName: string;
+  email: string;
+};

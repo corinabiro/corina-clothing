@@ -18,9 +18,9 @@ import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
-  signOutUser,
-  AdditionalInformation
+  signOutUser
 } from "../../utils/firebase/firebase.utils";
+import { AdditionalInformation } from "../../store/user/user.types"; ``
 
 export function* getSnapshotFromUserAuth(userAuth: User, additionalDetails?: AdditionalInformation) {
   try {

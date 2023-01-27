@@ -27,6 +27,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Category } from "../../store/categories/category.types";
 import { Order } from "../../store/orders/orders.types";
+import { AdditionalInformation, UserData } from "../../store/user/user.types";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -83,7 +84,7 @@ export const addOrdersInDocument = async <T extends Order>(
 ): Promise<void> => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
-  const docRef = doc(collectionRef, objectToAdd.title.toLowerCase());
+  const docRef = doc(collectionRef, objectToAdd.id.toLowerCase());
   batch.set(docRef, objectToAdd);
 
   await batch.commit();
@@ -106,15 +107,29 @@ export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   //return categoryMap;
 };
 
-export type AdditionalInformation = {
-  displayName?: string;
+export const getOrdersAndDocuments = async (): Promise<Order[]> => {
+  const collectionRef = collection(db, "orders");
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot.docs.map(
+    (querySnapshot) => querySnapshot.data() as Order
+  );
+  // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+  //   const { title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  //}, {});
+
+  //return categoryMap;
 };
 
-export type UserData = {
-  createdAt: Date;
-  displayName: string;
-  email: string;
+export const getOrderDetails = async (orderID: string): Promise<Order> => {
+  const docRef = doc(db, "orders", orderID);
+  const docSnap = await getDoc(docRef);
+  return docSnap.data() as Order;
 };
+
 
 export const createUserDocumentFromAuth = async (
   userAuth: User,

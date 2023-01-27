@@ -34,10 +34,11 @@ const PaymentForm = () => {
   const navigate = useNavigate();
 
   const order = {
-    title: unique_id.slice(0,15),
+    id: unique_id.slice(0,15),
     items: cartItems,
     amount: amount,
     user: currentUser, 
+    orderDate: new Date(),
   }
 
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
